@@ -2,10 +2,38 @@ class ArticlesController < ApplicationController
 	def index
 		@articles = Article.all
 	end
+
+	def create
+		@article = Article.new(article_params)
+		@article.save
+
+		flash.notice = "Your new article called '#{@article.title}' has been created!"
+
+		redirect_to article_path(@article)
+	end
+	def new
+		@article = Article.new
+	end
+	def edit
+		@article = Article.find(params[:id])
+	end
 	def show
 		@article = Article.find(params[:id])
 	end
-	def new
-		
+	def update
+		@article = Article.find(params[:id])
+		@article.update(article_params)
+
+		flash.notice ="Article '#{@article.title}' updated!"
+
+		redirect_to article_path(@article)
+	end
+	def destroy
+		@article = Article.find(params[:id])
+		@article.destroy
+
+		flash.notice = "'#{@article.title}' has been destroyed correctly"
+
+		redirect_to articles_path
 	end
 end
