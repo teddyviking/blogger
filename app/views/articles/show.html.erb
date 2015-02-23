@@ -7,6 +7,8 @@
 	<% end %>
 </p>
 
+<%= image_tag @article.image.url if @article.image.exists? %>
+
 <p><%= @article.body %></p>
 
 <%= render partial: 'comments/form' %>
