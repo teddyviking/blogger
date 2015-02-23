@@ -11,12 +11,15 @@ class ArticlesController < ApplicationController
 
 		redirect_to article_path(@article)
 	end
+
 	def new
 		@article = Article.new
 	end
+
 	def edit
 		@article = Article.find(params[:id])
 	end
+
 	def show
 		@article = Article.find(params[:id])
 
@@ -24,6 +27,7 @@ class ArticlesController < ApplicationController
 		@comment.article_id = @article.id
 		
 	end
+
 	def update
 		@article = Article.find(params[:id])
 		@article.update(article_params)
@@ -32,6 +36,7 @@ class ArticlesController < ApplicationController
 
 		redirect_to article_path(@article)
 	end
+
 	def destroy
 		@article = Article.find(params[:id])
 		@article.destroy
